@@ -4,6 +4,7 @@
 
 {% block extra_css %}
 <style>
+  /* Общие сбросы */
   * {
       margin: 0;
       padding: 0;
@@ -11,6 +12,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
+  /* Темизация и глобальные стили */
   body {
       background-color: var(--bg-color, #f8f9fa);
       color: var(--text-color, #333);
@@ -18,13 +20,14 @@
       transition: background-color 0.3s, color 0.3s;
   }
 
+  /* Контейнер */
   .price-container {
       max-width: 1800px;
       margin: 0 auto;
       padding: 20px;
   }
 
-  /* Шапка */
+  /* Шапка страницы */
   .price-header {
       background: linear-gradient(135deg, #9c27b0, #673ab7);
       color: white;
@@ -34,18 +37,15 @@
       text-align: center;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   }
-
   .price-header h1 {
       font-size: 2.2rem;
       margin-bottom: 15px;
   }
-
   .price-header i {
       font-size: 3rem;
       margin-bottom: 20px;
       display: block;
   }
-
   .contact-info {
       display: flex;
       justify-content: center;
@@ -53,7 +53,6 @@
       flex-wrap: wrap;
       margin-top: 20px;
   }
-
   .contact-info p {
       display: flex;
       align-items: center;
@@ -61,7 +60,7 @@
       font-size: 1.1rem;
   }
 
-  /* Сетка из 6 карточек */
+  /* Сетка карточек (6 колонок) */
   .price-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -69,6 +68,7 @@
       margin-bottom: 40px;
   }
 
+  /* Карточка услуги */
   .price-card {
       background: var(--card-bg, white);
       border-radius: 12px;
@@ -80,12 +80,12 @@
       flex-direction: column;
       height: 100%;
   }
-
   .price-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 25px var(--shadow-color, rgba(0,0,0,0.12));
   }
 
+  /* Заголовок карточки */
   .card-header {
       display: flex;
       flex-direction: column;
@@ -96,7 +96,6 @@
       padding-bottom: 15px;
       border-bottom: 2px solid var(--border-color, #f0f0f0);
   }
-
   .card-header i {
       color: #9c27b0;
       font-size: 1.8rem;
@@ -109,7 +108,6 @@
       align-items: center;
       justify-content: center;
   }
-
   .card-header h2 {
       font-size: 1.2rem;
       color: var(--text-color, #4a148c);
@@ -117,14 +115,13 @@
       line-height: 1.3;
   }
 
-  /* Таблица услуг */
+  /* Список услуг в карточке */
   .service-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
       flex-grow: 1;
   }
-
   .service-item {
       display: flex;
       justify-content: space-between;
@@ -132,16 +129,13 @@
       padding: 12px 0;
       border-bottom: 1px dashed var(--border-color, #e0e0e0);
   }
-
   .service-item:last-child {
       border-bottom: none;
   }
-
   .service-info {
       flex: 1;
       padding-right: 15px;
   }
-
   .service-name {
       font-weight: 600;
       color: var(--text-color, #333);
@@ -150,7 +144,7 @@
       line-height: 1.3;
   }
 
-  /* Цены фиолетовым цветом */
+  /* Цены — фиолетовым цветом */
   .service-price {
       font-weight: 700;
       color: #9c27b0;
@@ -162,20 +156,18 @@
       flex-direction: column;
       align-items: flex-end;
   }
-
   .price-range {
       color: #9c27b0 !important;
       font-size: 1.1rem;
       font-weight: 700;
   }
-
   .free-price {
       color: #9c27b0 !important;
       font-weight: 700;
       font-size: 1.1rem;
   }
 
-  /* Гарантия */
+  /* Бейдж гарантии */
   .guarantee-badge {
       background: var(--card-bg, #f3e5f5);
       color: #6a1b9a;
@@ -186,7 +178,7 @@
       margin-top: 5px;
   }
 
-  /* Важная информация */
+  /* Блок важной информации */
   .important-note {
       background: var(--card-bg, #fff8e1);
       border-left: 4px solid #ffb300;
@@ -194,7 +186,6 @@
       border-radius: 8px;
       margin: 30px 0;
   }
-
   .important-note h3 {
       color: #ff6f00;
       margin-bottom: 10px;
@@ -203,7 +194,7 @@
       gap: 10px;
   }
 
-  /* Футер */
+  /* Футер блока */
   .price-footer {
       text-align: center;
       margin-top: 50px;
@@ -212,12 +203,12 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   }
-
   .price-footer h3 {
       color: var(--text-color, #4a148c);
       margin-bottom: 15px;
   }
 
+  /* Кнопка CTA */
   .cta-button {
       display: inline-block;
       background: linear-gradient(135deg, #9c27b0, #673ab7);
@@ -232,7 +223,6 @@
       border: none;
       cursor: pointer;
   }
-
   .cta-button:hover {
       transform: translateY(-3px);
       box-shadow: 0 7px 20px rgba(156, 39, 176, 0.3);
@@ -243,32 +233,26 @@
       .price-grid {
           grid-template-columns: repeat(3, 1fr);
       }
-
       .price-container {
           max-width: 1200px;
       }
   }
-
   @media (max-width: 1024px) {
       .price-grid {
           grid-template-columns: repeat(2, 1fr);
       }
-
       .price-header h1 {
           font-size: 1.8rem;
       }
   }
-
   @media (max-width: 768px) {
       .price-grid {
           grid-template-columns: 1fr;
       }
-
       .contact-info {
           flex-direction: column;
           gap: 15px;
       }
-
       .price-header h1 {
           font-size: 1.6rem;
       }
@@ -285,20 +269,20 @@
     <p class="lead mb-3">Прошивка OpenWRT, обход блокировок, усиление Wi-Fi сигнала</p>
     <div class="contact-info">
       <p><i class="fas fa-phone"></i> +7 (915) 702-31-72</p>
-      <p><i class="fas fa-clock"></i> Ежедневно 9:00-21:00</p>
+      <p><i class="fas fa-clock"></i> Ежедневно 9:00–21:00</p>
     </div>
   </header>
 
   <!-- Важная информация -->
   <div class="important-note">
     <h3><i class="fas fa-info-circle"></i> Важная информация</h3>
-    <p>• Диагностика роутера - <strong style="color: #9c27b0;">БЕСПЛАТНО</strong> (при последующей настройке)</p>
-    <p>• Выезд специалиста - 1000 ₽ (по городу Осташков)</p>
-    <p>• Гарантия на все виды работ от 6 месяцев</p>
+    <p>• Диагностика роутера — <strong style="color: #9c27b0;">БЕСПЛАТНО</strong> (при последующей настройке)</p>
+    <p>• Выезд специалиста — 1000 ₽ (по городу Осташков)</p>
+    <p>• Гарантия на все виды работ — от 6 месяцев</p>
     <p>• Конфиденциальность данных гарантирована</p>
   </div>
 
-  <!-- 6 карточек в ряд -->
+  <!-- Сетка услуг -->
   <div class="price-grid">
     <!-- Карточка 1: Прошивка OpenWRT -->
     <div class="price-card">
@@ -316,7 +300,6 @@
             <div class="price-range">2 500 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Прошивка + базовая настройка</div>
@@ -326,7 +309,6 @@
             <div class="price-range">3 500 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Полная настройка OpenWRT</div>
@@ -355,7 +337,6 @@
             <div class="price-range">2 000 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Обход блокировок YouTube</div>
@@ -365,7 +346,6 @@
             <div class="price-range">1 500 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Разблокировка Telegram</div>
@@ -393,7 +373,6 @@
             <div class="free-price">Бесплатно</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Усиление Wi-Fi сигнала</div>
@@ -403,7 +382,6 @@
             <div class="price-range">3 500 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Настройка Mesh-сети</div>
@@ -431,7 +409,6 @@
             <div class="free-price">Бесплатно</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Замена блока питания</div>
@@ -441,7 +418,6 @@
             <div class="price-range">от 1 000 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Ремонт платы роутера</div>
@@ -470,7 +446,6 @@
             <div class="price-range">1 500 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Родительский контроль</div>
@@ -480,7 +455,6 @@
             <div class="price-range">1 200 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Защита от DDoS</div>
@@ -508,7 +482,6 @@
             <div class="free-price">Бесплатно</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Настройка Smart TV и приставок</div>
@@ -518,7 +491,6 @@
             <div class="price-range">1 500 ₽</div>
           </div>
         </div>
-
         <div class="service-item">
           <div class="service-info">
             <div class="service-name">Срочный выезд (+50%)</div>
@@ -531,7 +503,7 @@
     </div>
   </div>
 
-  <!-- Дополнительная информация -->
+  <!-- Футер с преимуществами -->
   <div class="price-footer">
     <h3>Почему выбирают нас?</h3>
     <p>• Опыт работы с роутерами с 2015 года</p>
@@ -550,13 +522,13 @@
   </div>
 </div>
 
-<!-- Модальное окно для заказа -->
+<!-- Модальное окно заказа -->
 <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="orderModalLabel">Заказ интернет-услуги</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
         <form>
@@ -587,7 +559,8 @@
             <label for="clientAddress" class="form-label">Адрес (для выезда)</label>
             <input type="text" class="form-control" id="clientAddress">
           </div>
-          <button type="submit" class="btn btn-primary w-100" style="background: linear-gradient(135deg, #9c27b0, #673ab7); border: none;">
+          <button type="submit" class="btn btn-primary w-100"
+                  style="background: linear-gradient(135deg, #9c27b0, #673ab7); border: none;">
             Отправить заявку
           </button>
         </form>

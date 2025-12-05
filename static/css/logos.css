@@ -1,0 +1,73 @@
+/* ========== ПОЛОСКА ЛОГОТИПОВ БРЕНДОВ ========== */
+
+.logos-section {
+    background: #fff;
+    padding: 40px 0;
+    margin: 40px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.logos-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.logos-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.logos-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 50s linear infinite;
+}
+
+.logo-item {
+    flex: 0 0 auto;
+    width: 150px;
+    margin: 0 20px;
+    opacity: 1;
+}
+
+.logo-item img {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    padding: 10px;
+}
+
+.logo-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .logo-item {
+        width: 120px;
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-item {
+        width: 100px;
+        margin: 0 10px;
+    }
+}

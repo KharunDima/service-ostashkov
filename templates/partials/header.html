@@ -1,15 +1,18 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
+            <!-- Логотип и ссылка на главную -->
             <a class="navbar-brand" href="{{ url_for('index') }}">
-                <i class="fas fa-tools me-2"></i>Ремонт электроники в г.Осташков
+                <i class="fas fa-tools me-2"></i>Ремонт техники
             </a>
 
+            <!-- Кнопка бургер-меню -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Переключить навигацию">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Меню навигации -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -50,34 +53,27 @@
                     </li>
                 </ul>
 
-                <!-- Правая часть навбара -->
+                <!-- Правая часть: телефон, соцсети, тема, кнопка -->
                 <div class="d-flex align-items-center gap-3">
-                    <!-- Телефон -->
+                    <!-- Телефон (только на десктопе) -->
                     <span class="navbar-text me-2 d-none d-md-block">
-        <i class="fas fa-phone me-1"></i>+7 (915) 702-31-72
-    </span>
+                        <i class="fas fa-phone me-1"></i>+7 (915) 702-31-72
+                    </span>
 
                     <!-- Иконки социальных сетей -->
                     <div class="d-flex align-items-center gap-2 me-2">
-                        <!-- GitHub -->
                         <a href="https://github.com" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Наш GitHub">
                             <i class="fab fa-github fa-lg"></i>
                         </a>
-
-                        <!-- YouTube -->
                         <a href="https://youtube.com" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Наш YouTube канал">
                             <i class="fab fa-youtube fa-lg" style="color: #ff0000;"></i>
                         </a>
-
-                        <!-- WhatsApp -->
                         <a href="https://wa.me/79157023172" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Написать в WhatsApp">
                             <i class="fab fa-whatsapp fa-lg" style="color: #25d366;"></i>
                         </a>
-
-                        <!-- Telegram -->
                         <a href="https://t.me" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Написать в Telegram">
                             <i class="fab fa-telegram fa-lg" style="color: #0088cc;"></i>
@@ -119,17 +115,16 @@
     </nav>
 </header>
 
-<!-- Модальное окно -->
+<!-- Модальное окно: Запись на ремонт -->
 <div class="modal fade" id="callbackModal" tabindex="-1" aria-labelledby="callbackModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="callbackModalLabel">Запись на ремонт</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <form>
-                    <!-- Только поля формы, БЕЗ кнопки темы -->
                     <div class="mb-3">
                         <label for="callbackName" class="form-label">Ваше имя</label>
                         <input type="text" class="form-control" id="callbackName" required>
@@ -138,7 +133,6 @@
                         <label for="callbackPhone" class="form-label">Телефон</label>
                         <input type="tel" class="form-control" id="callbackPhone" required>
                     </div>
-                    <!-- ... остальные поля ... -->
                     <button type="submit" class="btn btn-primary w-100">Заказать звонок</button>
                 </form>
             </div>
