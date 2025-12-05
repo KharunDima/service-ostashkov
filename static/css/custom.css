@@ -1,0 +1,531 @@
+/* ========== СТИЛИ ДЛЯ КАРУСЕЛИ ========== */
+
+/* Основные стили для карусели */
+.carousel-item {
+    position: relative;
+    height: 32rem;
+}
+
+/* Картинка занимает всю высоту */
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Темный оверлей для лучшей читаемости текста */
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+    z-index: 1;
+}
+
+/* Контейнер для текста */
+.carousel-caption-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Сам текст */
+.carousel-caption {
+    z-index: 2;
+    position: relative;
+}
+
+.carousel-caption h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 1rem;
+}
+
+.carousel-caption .lead {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 1.5rem;
+}
+
+/* Кнопки */
+.carousel-caption .btn {
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+}
+
+.featurette-image-placeholder {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 992px) {
+    .carousel-caption h1 {
+        font-size: 2.5rem;
+    }
+
+    .carousel-caption .lead {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 25rem;
+    }
+
+    .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+
+    .carousel-caption .lead {
+        font-size: 1rem;
+    }
+
+    .carousel-caption .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 20rem;
+    }
+
+    .carousel-caption h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .carousel-caption .lead {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ========== СТИЛИ ДЛЯ НАВИГАЦИИ ========== */
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: rgba(255,255,255,0.15);
+    font-weight: 600;
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+    .navbar-nav {
+        padding: 1rem 0;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ========== СТИЛИ ДЛЯ ЛОГОТИПОВ (если еще нет) ========== */
+
+.logos-section {
+    background: #fff;
+    padding: 40px 0;
+    margin: 40px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.logos-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.logos-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 50s linear infinite;
+}
+
+.logo-item {
+    flex: 0 0 auto;
+    width: 150px;
+    margin: 0 20px;
+    opacity: 1;
+}
+
+.logo-item img {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    padding: 10px;
+}
+
+.logo-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Адаптивность для логотипов */
+@media (max-width: 768px) {
+    .logo-item {
+        width: 120px;
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-item {
+        width: 100px;
+        margin: 0 10px;
+    }
+}
+
+/* Фон сайта */
+body {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Для тёмной темы — можно усилить */
+[data-bs-theme="dark"] .marketing {
+  background-color: #1a1a1a;
+  color: #e9ecef;
+}
+
+[data-bs-theme="dark"] .featurette-image-placeholder {
+  background-color: #2d2d2d;
+}
+
+/* ========== СТИЛИ ДЛЯ ТЕМНОЙ ТЕМЫ ========== */
+
+/* CSS-переменные для темной темы */
+[data-bs-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --header-bg: #1a1a2e;
+    --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --light-bg: #2d2d2d;
+}
+
+/* Основные стили для темной темы */
+[data-bs-theme="dark"] body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Навбар в темной теме */
+[data-bs-theme="dark"] .navbar-dark.bg-dark {
+    background-color: #0d1117 !important;
+}
+
+/* Секция с логотипами в темной теме */
+[data-bs-theme="dark"] .logos-section {
+    background: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .logo-item img {
+    filter: grayscale(100%) brightness(0.7);
+}
+
+[data-bs-theme="dark"] .logo-item:hover img {
+    filter: grayscale(0%) brightness(1);
+}
+
+/* Маркетинговые блоки */
+[data-bs-theme="dark"] .marketing {
+    background-color: transparent;
+}
+
+[data-bs-theme="dark"] .featurette-image-placeholder {
+    background-color: var(--light-bg);
+}
+
+/* ========== ТЕМНАЯ ТЕМА ДЛЯ PAGES ========== */
+
+/* Интернет-услуги (internet_services.html) */
+[data-bs-theme="dark"] .price-header {
+    background: linear-gradient(135deg, #6a11cb, #2575fc) !important;
+}
+
+[data-bs-theme="dark"] .price-card {
+    background-color: var(--card-bg) !important;
+    border-top-color: #9c27b0 !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 4px 15px var(--shadow-color) !important;
+}
+
+[data-bs-theme="dark"] .card-header i {
+    background: rgba(156, 39, 176, 0.2) !important;
+    color: #ba68c8 !important;
+}
+
+[data-bs-theme="dark"] .card-header {
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .service-item {
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .service-name {
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .guarantee-badge {
+    background: rgba(156, 39, 176, 0.3) !important;
+    color: #e1bee7 !important;
+}
+
+[data-bs-theme="dark"] .important-note {
+    background: #2d3748 !important;
+    border-left-color: #ecc94b !important;
+}
+
+[data-bs-theme="dark"] .important-note h3 {
+    color: #f6e05e !important;
+}
+
+[data-bs-theme="dark"] .price-footer {
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .price-footer h3 {
+    color: #ba68c8 !important;
+}
+
+/* Прайс-листы (price_laptops.html и price_tv.html) */
+[data-bs-theme="dark"] .price-header-tv {
+    background: linear-gradient(135deg, #2E7D32, #1B5E20) !important;
+}
+
+[data-bs-theme="dark"] .price-card,
+[data-bs-theme="dark"] .price-card-tv {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .card-header-tv i {
+    background: rgba(76, 175, 80, 0.2) !important;
+    color: #81c784 !important;
+}
+
+[data-bs-theme="dark"] .service-price,
+[data-bs-theme="dark"] .service-price-tv,
+[data-bs-theme="dark"] .price-range,
+[data-bs-theme="dark"] .price-range-tv,
+[data-bs-theme="dark"] .free-price,
+[data-bs-theme="dark"] .free-price-tv {
+    color: inherit !important;
+}
+
+/* Модальные окна */
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .modal-header {
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .modal-footer {
+    border-top-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select,
+[data-bs-theme="dark"] .form-textarea {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+    background-color: #374151 !important;
+    border-color: #6a11cb !important;
+    box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25) !important;
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .form-label {
+    color: var(--text-color) !important;
+}
+
+/* Утилиты для текста */
+[data-bs-theme="dark"] .text-body-secondary {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Таблицы */
+[data-bs-theme="dark"] table {
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-color);
+    --bs-table-border-color: var(--border-color);
+}
+
+/* Карточки Bootstrap */
+[data-bs-theme="dark"] .card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Выпадающие меню */
+[data-bs-theme="dark"] .dropdown-menu {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item {
+    color: var(--text-color) !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover {
+    background-color: #2d3748 !important;
+}
+
+/* Кнопки */
+[data-bs-theme="dark"] .btn-outline-secondary {
+    border-color: #4a5568 !important;
+    color: #94a3b8 !important;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+    background-color: #4a5568 !important;
+    color: white !important;
+}
+
+/* ========== СТИЛИ ДЛЯ СОЦИАЛЬНЫХ ИКОНОК В ШАПКЕ ========== */
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.social-icon:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Светлая тема */
+[data-bs-theme="light"] .social-icon {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    color: #495057;
+}
+
+[data-bs-theme="light"] .social-icon:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Темная тема */
+[data-bs-theme="dark"] .social-icon {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+    color: #cbd5e0;
+}
+
+[data-bs-theme="dark"] .social-icon:hover {
+    background-color: #4a5568;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Специальные цвета для отдельных иконок (уже есть встроенные стили) */
+[data-bs-theme="light"] .fa-github {
+    color: #333;
+}
+
+[data-bs-theme="dark"] .fa-github {
+    color: #f0f6fc;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .social-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem !important;
+    }
+
+    .d-flex.gap-2.me-2 {
+        gap: 0.5rem !important;
+    }
+}
+
+/* Подсказки (tooltips) */
+.tooltip {
+    --bs-tooltip-bg: #333;
+    --bs-tooltip-color: white;
+}
+
+[data-bs-theme="dark"] .tooltip {
+    --bs-tooltip-bg: #4a5568;
+}
+
+/* Эффект при наведении на конкретные иконки */
+.social-icon .fa-github:hover {
+    transform: scale(1.1);
+}
+
+.social-icon .fa-youtube:hover {
+    color: #ff3333 !important;
+}
+
+.social-icon .fa-whatsapp:hover {
+    color: #00ff6a !important;
+}
+
+.social-icon .fa-telegram:hover {
+    color: #33aaff !important;
+}

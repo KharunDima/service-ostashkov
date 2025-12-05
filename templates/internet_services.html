@@ -1,0 +1,598 @@
+{% extends "base.html" %}
+
+{% block title %}Интернет услуги и роутеры в г.Осташков{% endblock %}
+
+{% block extra_css %}
+<style>
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+      background-color: var(--bg-color, #f8f9fa);
+      color: var(--text-color, #333);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  .price-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 20px;
+  }
+
+  /* Шапка */
+  .price-header {
+      background: linear-gradient(135deg, #9c27b0, #673ab7);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+
+  .price-header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+  }
+
+  .price-header i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+  }
+
+  .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+  }
+
+  .contact-info p {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+  }
+
+  /* Сетка из 6 карточек */
+  .price-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+  }
+
+  .price-card {
+      background: var(--card-bg, white);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border-top: 4px solid #9c27b0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+  }
+
+  .price-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px var(--shadow-color, rgba(0,0,0,0.12));
+  }
+
+  .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--border-color, #f0f0f0);
+  }
+
+  .card-header i {
+      color: #9c27b0;
+      font-size: 1.8rem;
+      background: var(--card-bg, #f3e5f5);
+      padding: 12px;
+      border-radius: 10px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .card-header h2 {
+      font-size: 1.2rem;
+      color: var(--text-color, #4a148c);
+      font-weight: 600;
+      line-height: 1.3;
+  }
+
+  /* Таблица услуг */
+  .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-grow: 1;
+  }
+
+  .service-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border-color, #e0e0e0);
+  }
+
+  .service-item:last-child {
+      border-bottom: none;
+  }
+
+  .service-info {
+      flex: 1;
+      padding-right: 15px;
+  }
+
+  .service-name {
+      font-weight: 600;
+      color: var(--text-color, #333);
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+      line-height: 1.3;
+  }
+
+  /* Цены фиолетовым цветом */
+  .service-price {
+      font-weight: 700;
+      color: #9c27b0;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      min-width: 90px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+  }
+
+  .price-range {
+      color: #9c27b0 !important;
+      font-size: 1.1rem;
+      font-weight: 700;
+  }
+
+  .free-price {
+      color: #9c27b0 !important;
+      font-weight: 700;
+      font-size: 1.1rem;
+  }
+
+  /* Гарантия */
+  .guarantee-badge {
+      background: var(--card-bg, #f3e5f5);
+      color: #6a1b9a;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 5px;
+  }
+
+  /* Важная информация */
+  .important-note {
+      background: var(--card-bg, #fff8e1);
+      border-left: 4px solid #ffb300;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+  }
+
+  .important-note h3 {
+      color: #ff6f00;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+
+  /* Футер */
+  .price-footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 25px;
+      background: var(--card-bg, white);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  }
+
+  .price-footer h3 {
+      color: var(--text-color, #4a148c);
+      margin-bottom: 15px;
+  }
+
+  .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #9c27b0, #673ab7);
+      color: white;
+      padding: 14px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+  }
+
+  .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(156, 39, 176, 0.3);
+  }
+
+  /* Адаптивность */
+  @media (max-width: 1600px) {
+      .price-grid {
+          grid-template-columns: repeat(3, 1fr);
+      }
+
+      .price-container {
+          max-width: 1200px;
+      }
+  }
+
+  @media (max-width: 1024px) {
+      .price-grid {
+          grid-template-columns: repeat(2, 1fr);
+      }
+
+      .price-header h1 {
+          font-size: 1.8rem;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .price-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+          flex-direction: column;
+          gap: 15px;
+      }
+
+      .price-header h1 {
+          font-size: 1.6rem;
+      }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="price-container">
+  <!-- Шапка -->
+  <header class="price-header">
+    <i class="fas fa-wifi"></i>
+    <h1>Интернет услуги и настройка роутеров</h1>
+    <p class="lead mb-3">Прошивка OpenWRT, обход блокировок, усиление Wi-Fi сигнала</p>
+    <div class="contact-info">
+      <p><i class="fas fa-phone"></i> +7 (915) 702-31-72</p>
+      <p><i class="fas fa-clock"></i> Ежедневно 9:00-21:00</p>
+    </div>
+  </header>
+
+  <!-- Важная информация -->
+  <div class="important-note">
+    <h3><i class="fas fa-info-circle"></i> Важная информация</h3>
+    <p>• Диагностика роутера - <strong style="color: #9c27b0;">БЕСПЛАТНО</strong> (при последующей настройке)</p>
+    <p>• Выезд специалиста - 1000 ₽ (по городу Осташков)</p>
+    <p>• Гарантия на все виды работ от 6 месяцев</p>
+    <p>• Конфиденциальность данных гарантирована</p>
+  </div>
+
+  <!-- 6 карточек в ряд -->
+  <div class="price-grid">
+    <!-- Карточка 1: Прошивка OpenWRT -->
+    <div class="price-card">
+      <div class="card-header">
+        <i class="fas fa-microchip"></i>
+        <h2>Прошивка OpenWRT</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Базовая установка OpenWRT</div>
+            <div class="guarantee-badge">гарантия 6 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">2 500 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Прошивка + базовая настройка</div>
+            <div class="guarantee-badge">гарантия 6 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">3 500 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Полная настройка OpenWRT</div>
+            <div class="guarantee-badge">гарантия 6 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">4 500 ₽</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 2: Обход блокировок -->
+    <div class="price-card">
+      <div class="card-header">
+        <i class="fas fa-unlock-alt"></i>
+        <h2>Обход блокировок</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Настройка VPN на роутере</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">2 000 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Обход блокировок YouTube</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">1 500 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Разблокировка Telegram</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">1 500 ₽</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 3: Wi-Fi и сигнал -->
+    <div class="price-card">
+      <div class="card-header">
+        <i class="fas fa-wifi"></i>
+        <h2>Wi-Fi и сигнал</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Диагностика Wi-Fi сети</div>
+          </div>
+          <div class="service-price">
+            <div class="free-price">Бесплатно</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Усиление Wi-Fi сигнала</div>
+            <div class="guarantee-badge">гарантия 6 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">3 500 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Настройка Mesh-сети</div>
+            <div class="guarantee-badge">гарантия 6 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">4 500 ₽</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 4: Ремонт роутеров -->
+    <div class="price-card">
+      <div class="card-header">
+        <i class="fas fa-tools"></i>
+        <h2>Ремонт роутеров</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Диагностика роутера</div>
+          </div>
+          <div class="service-price">
+            <div class="free-price">Бесплатно</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Замена блока питания</div>
+            <div class="guarantee-badge">гарантия 6 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">от 1 000 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Ремонт платы роутера</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">от 2 500 ₽</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 5: Безопасность -->
+    <div class="price-card">
+      <div class="card-header">
+        <i class="fas fa-shield-alt"></i>
+        <h2>Безопасность</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Настройка Firewall</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">1 500 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Родительский контроль</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">1 200 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Защита от DDoS</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">2 000 ₽</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка 6: Дополнительно -->
+    <div class="price-card">
+      <div class="card-header">
+        <i class="fas fa-plus-circle"></i>
+        <h2>Дополнительно</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Консультация по выбору роутера</div>
+          </div>
+          <div class="service-price">
+            <div class="free-price">Бесплатно</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Настройка Smart TV и приставок</div>
+            <div class="guarantee-badge">гарантия 3 мес.</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">1 500 ₽</div>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-info">
+            <div class="service-name">Срочный выезд (+50%)</div>
+          </div>
+          <div class="service-price">
+            <div class="price-range">+50%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Дополнительная информация -->
+  <div class="price-footer">
+    <h3>Почему выбирают нас?</h3>
+    <p>• Опыт работы с роутерами с 2015 года</p>
+    <p>• Используем только проверенное оборудование</p>
+    <p>• Полная конфиденциальность ваших данных</p>
+    <p>• Бесплатная консультация перед началом работ</p>
+
+    <button class="cta-button" data-bs-toggle="modal" data-bs-target="#orderModal">
+      <i class="fas fa-calendar-check"></i> Заказать консультацию
+    </button>
+
+    <div style="margin-top: 30px; font-size: 0.9rem; color: #666;">
+      <p><i class="fas fa-exclamation-circle"></i> Цены указаны без учета стоимости роутера</p>
+      <p><i class="fas fa-exclamation-circle"></i> Стоимость может меняться в зависимости от модели устройства</p>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно для заказа -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderModalLabel">Заказ интернет-услуги</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="serviceType" class="form-label">Услуга</label>
+            <select class="form-select" id="serviceType">
+              <option selected>Выберите услугу</option>
+              <option value="openwrt">Прошивка OpenWRT</option>
+              <option value="vpn">Настройка VPN/обход блокировок</option>
+              <option value="wifi">Усиление Wi-Fi сигнала</option>
+              <option value="repair">Ремонт роутера</option>
+              <option value="parental">Родительский контроль</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="routerModel" class="form-label">Модель роутера (если известна)</label>
+            <input type="text" class="form-control" id="routerModel" placeholder="Например, TP-Link Archer C7">
+          </div>
+          <div class="mb-3">
+            <label for="clientName" class="form-label">Ваше имя</label>
+            <input type="text" class="form-control" id="clientName" required>
+          </div>
+          <div class="mb-3">
+            <label for="clientPhone" class="form-label">Телефон</label>
+            <input type="tel" class="form-control" id="clientPhone" required>
+          </div>
+          <div class="mb-3">
+            <label for="clientAddress" class="form-label">Адрес (для выезда)</label>
+            <input type="text" class="form-control" id="clientAddress">
+          </div>
+          <button type="submit" class="btn btn-primary w-100" style="background: linear-gradient(135deg, #9c27b0, #673ab7); border: none;">
+            Отправить заявку
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
