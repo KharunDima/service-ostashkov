@@ -1,8 +1,8 @@
-// custom.js - основной файл
+// custom.js - основной файл JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Сайт загружен!');
 
-    // Функция переключения темы (остается для взаимодействия пользователя)
+    // Функция переключения темы
     const setTheme = function (theme) {
         if (theme === 'auto') {
             const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
     // Анимация социальных иконок
-    const socialIcons = document.querySelectorAll('.social-icon');
+    const socialIcons = document.querySelectorAll('.social-icon, .social-link');
     socialIcons.forEach(icon => {
         icon.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px) scale(1.1)';
@@ -58,11 +58,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Проверка логотипов
+    // Анимация карточек на странице "О нас"
+    const statsCards = document.querySelectorAll('.stats-card, .contact-card');
+    statsCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+        });
+    });
+
+    // Плавная прокрутка для якорных ссылок
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Анимация логотипов
     const logosTrack = document.querySelector('.logos-track');
     if (logosTrack) {
         console.log('Анимация логотипов активна');
+
+        // Пауза анимации при наведении
+        logosTrack.addEventListener('mouseenter', () => {
+            logosTrack.style.animationPlayState = 'paused';
+        });
+
+        logosTrack.addEventListener('mouseleave', () => {
+            logosTrack.style.animationPlayState = 'running';
+        });
     }
+
+    // Telegram кнопки - добавляем счетчик кликов
+    const telegramButtons = document.querySelectorAll('a[href*="t.me"]');
+    telegramButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log('Переход в Telegram для записи');
+            // Можно добавить Google Analytics или другую аналитику
+        });
+    });
 
     console.log('Все скрипты активированы');
 });
+
+// Функция для копирования текста (если понадобится в будущем)
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        console.log('Текст скопирован: ' + text);
+    }).catch(err => {
+        console.error('Ошибка копирования: ', err);
+    });
+}

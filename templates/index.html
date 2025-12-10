@@ -90,7 +90,7 @@
             </div>
             <h2 class="fw-normal">Качественный ремонт</h2>
             <p>Используем оригинальные запчасти и профессиональное оборудование.</p>
-            <p><a class="btn btn-secondary" href="#">Подробнее &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{{ url_for('about') }}">Подробнее &raquo;</a></p>
         </div>
 
         <!-- Блок 2 -->
@@ -100,7 +100,7 @@
             </div>
             <h2 class="fw-normal">Быстро и вовремя</h2>
             <p>Срочный ремонт от 1 часа. Работаем без выходных. Фиксированные сроки выполнения работ.</p>
-            <p><a class="btn btn-secondary" href="#">Подробнее &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{{ url_for('contacts') }}">Подробнее &raquo;</a></p>
         </div>
 
         <!-- Блок 3 -->
@@ -110,7 +110,7 @@
             </div>
             <h2 class="fw-normal">Гарантия 6 месяцев</h2>
             <p>Гарантия на все виды работ от 3 месяцев. Бесплатное гарантийное обслуживание.</p>
-            <p><a class="btn btn-secondary" href="#">Подробнее &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{{ url_for('price_laptops') }}">Подробнее &raquo;</a></p>
         </div>
     </div>
 
@@ -178,7 +178,7 @@
                 <li>Ремонт Smart TV и настройка</li>
                 <li>Калибровка изображения</li>
             </ul>
-            <p><a href="{{ url_for('price_tv') }}" class="btn btn-primary btn-lg">Узанать цены</a></p>
+            <p><a href="{{ url_for('price_tv') }}" class="btn btn-primary btn-lg">Узнать цены</a></p>
         </div>
         <div class="col-md-5 order-md-1">
             <div class="featurette-image-placeholder bg-light rounded shadow-sm p-5 text-center">
@@ -195,54 +195,14 @@
             <h2 class="featurette-heading fw-normal lh-1 mb-4">Запишитесь на ремонт прямо сейчас!</h2>
             <p class="lead mb-4">Оставьте заявку и наш специалист свяжется с вами в течение 15 минут</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="tel:88001234567" class="btn btn-success btn-lg">
+                <a href="tel:+79157023172" class="btn btn-success btn-lg">
                     <i class="fas fa-phone me-2"></i>+7 (915) 702-31-72
                 </a>
-                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#contactModal">
-                    <i class="fas fa-calendar-check me-2"></i>Записаться онлайн
-                </button>
+                <a href="https://t.me/kharun_dima" target="_blank" class="btn btn-primary btn-lg">
+                    <i class="fas fa-calendar-check me-2"></i>Записаться в Telegram
+                </a>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Модальное окно для записи -->
-<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contactModalLabel">Запись на ремонт</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Ваше имя</label>
-                        <input type="text" class="form-control" id="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Телефон</label>
-                        <input type="tel" class="form-control" id="phone" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="device" class="form-label">Устройство</label>
-                        <select class="form-select" id="device">
-                            <option selected>Выберите устройство</option>
-                            <option value="laptop">Ноутбук</option>
-                            <option value="tv">Телевизор</option>
-                            <option value="pc">Компьютер</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="problem" class="form-label">Описание проблемы</label>
-                        <textarea class="form-control" id="problem" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Отправить заявку</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 {% endblock %}

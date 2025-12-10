@@ -1,9 +1,13 @@
+import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
+# Загружаем данные из JSON
+with open('data/services.json', 'r', encoding='utf-8') as f:
+    services_data = json.load(f)
+
 # === Данные: Логотипы брендов ===
-# Используются на главной и на странице /logos
 logos_data = [
     {'name': 'Acer', 'image': '/static/images/marks/acer.jpg'},
     {'name': 'Apple', 'image': '/static/images/marks/apple.jpg'},
@@ -21,54 +25,47 @@ logos_data = [
     {'name': 'LG', 'image': '/static/images/marks/lg.jpg'}
 ]
 
-# === Данные: Интернет-услуги ===
-# Используются на странице /internet-services
-services_data = [
-    {'name': 'Прошивка роутера OpenWRT', 'price': '2 500 ₽', 'desc': 'Установка OpenWRT с полной настройкой'},
-    {'name': 'Настройка обхода блокировок', 'price': '1 500 ₽', 'desc': 'YouTube, Telegram, WhatsApp, Discord'},
-    {'name': 'Настройка VPN на роутере', 'price': '2 000 ₽', 'desc': 'WireGuard/OpenVPN на роутере'},
-    {'name': 'Усиление Wi-Fi сигнала', 'price': '3 500 ₽', 'desc': 'Установка репитера/усилителя'},
-    {'name': 'Ремонт роутера', 'price': 'от 1 000 ₽', 'desc': 'Диагностика и ремонт'},
-    {'name': 'Настройка родительского контроля', 'price': '1 200 ₽', 'desc': 'Ограничение времени и контента'},
-]
-
-
 # === Маршруты ===
-
 @app.route('/')
 def index():
     """Главная страница"""
     return render_template('index.html', logos=logos_data)
 
-
-@app.route('/logos')
-def logos():
-    """Страница с логотипами брендов"""
-    return render_template('logos.html', logos=logos_data)
-
-
 @app.route('/price-laptops')
 def price_laptops():
     """Прайс-лист: ноутбуки"""
-    return render_template('price_laptops.html')
-
+    return render_template('price_base.html', page_data=services_data['laptops'])
 
 @app.route('/price-tv')
 def price_tv():
     """Прайс-лист: телевизоры"""
-    return render_template('price_tv.html')
-
+    return render_template('price_base.html', page_data=services_data['tv'])
 
 @app.route('/internet-services')
 def internet_services():
     """Услуги по настройке интернета и роутеров"""
-    return render_template('internet_services.html', services=services_data)
+    return render_template('price_base.html', page_data=services_data['internet_services'])
 
-# === Обработчик ошибки 404 ===
+@app.route('/contacts')
+def contacts():
+    """Страница контактов"""
+    return render_template('contacts.html')
+
+@app.route('/about')
+def about():
+    """Страница о нас"""
+    return render_template('about.html')
+
+# === Обработчики ошибок ===
 @app.errorhandler(404)
 def page_not_found(e):
     """Обработка ошибки 404 — страница не найдена"""
     return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    """Обработка ошибки 500 — внутренняя ошибка сервера"""
+    return render_template('500.html'), 500
 
 # === Запуск приложения ===
 if __name__ == '__main__':

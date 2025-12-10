@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% block title %}О нас - Ремонт электроники{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .about-hero {
+        background: linear-gradient(135deg, #1a73e8, #0d47a1);
+        color: white;
+        border-radius: 20px;
+        padding: 4rem 2rem;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+        background-size: cover;
+    }
+
+    .stats-card {
+        background: var(--card-bg, white);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #1a73e8;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #1a73e8;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 30px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #1a73e8;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 70px;
+        margin-bottom: 2rem;
+    }
+
+    .timeline-year {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 60px;
+        height: 60px;
+        background: #1a73e8;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .team-member {
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .team-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #1a73e8, #0d47a1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+    }
+
+    .guarantee-card {
+        border-left: 4px solid #4CAF50;
+        background: #f8fff8;
+        padding: 1.5rem;
+        border-radius: 0 10px 10px 0;
+        margin-bottom: 1rem;
+    }
+
+    [data-bs-theme="dark"] .guarantee-card {
+        background: rgba(76, 175, 80, 0.1);
+        border-left-color: #81c784;
+    }
+
+    [data-bs-theme="dark"] .about-hero {
+        background: linear-gradient(135deg, #0d47a1, #002171);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <!-- Герой-секция -->
+    <div class="about-hero text-center">
+        <div class="position-relative">
+            <h1 class="display-4 mb-4">О нашей компании</h1>
+            <p class="lead mb-0">11 лет опыта в ремонте электроники. Качество, надежность, гарантия.</p>
+        </div>
+    </div>
+
+    <!-- Статистика -->
+    <div class="row mb-5">
+        <div class="col-md-3 col-6 mb-4">
+            <div class="stats-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="stat-number">11+</div>
+                <p class="text-muted">Лет на рынке</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+            <div class="stats-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="stat-number">5000+</div>
+                <p class="text-muted">Отремонтированных устройств</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+            <div class="stats-card">
+                <div class="stat-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="stat-number">98%</div>
+                <p class="text-muted">Довольных клиентов</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+            <div class="stats-card">
+                <div class="stat-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="stat-number">6 мес</div>
+                <p class="text-muted">Гарантия на работы</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Наша история и миссия -->
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <h2 class="mb-4">Наша история</h2>
+            <p>Мы начали свою деятельность в 2014 году как небольшой сервисный центр по ремонту компьютеров. С тех пор мы выросли в полноценную компанию, специализирующуюся на ремонте всей электроники.</p>
+            <p>За 11 лет работы мы накопили огромный опыт, обучили специалистов и создали эффективную систему работы, которая позволяет нам выполнять ремонт качественно и в срок.</p>
+            <p>Наша философия проста: честность, качество и надежность. Мы не беремся за работу, которую не можем выполнить хорошо, и всегда говорим клиентам правду о состоянии их устройств.</p>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <h2 class="mb-4">Наша миссия</h2>
+            <p>Мы стремимся сделать ремонт электроники доступным, быстрым и качественным для каждого жителя Осташкова и района.</p>
+            <div class="guarantee-card">
+                <h5><i class="fas fa-check-circle text-success me-2"></i>Наши принципы:</h5>
+                <ul class="mb-0">
+                    <li>Честная диагностика и прозрачные цены</li>
+                    <li>Использование только качественных запчастей</li>
+                    <li>Гарантия на все виды работ</li>
+                    <li>Уважительное отношение к каждому клиенту</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Хронология -->
+    <h2 class="text-center mb-4">Наш путь</h2>
+    <div class="timeline mb-5">
+        <div class="timeline-item">
+            <div class="timeline-year">2014</div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Начало пути</h5>
+                    <p class="card-text">Открытие небольшого сервисного центра по ремонту компьютеров и ноутбуков.</p>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2016</div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Расширение услуг</h5>
+                    <p class="card-text">Добавление ремонта телевизоров и мониторов. Первые выезды к клиентам.</p>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Новые технологии</h5>
+                    <p class="card-text">Освоение ремонта Smart TV и настройки сетевого оборудования. Внедрение онлайн-записи.</p>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Современный сервис</h5>
+                    <p class="card-text">Полный спектр услуг: от классического ремонта до настройки сложных сетевых решений.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Команда -->
+    <h2 class="text-center mb-4">Наша команда</h2>
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="team-member">
+                <div class="team-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h4>Дмитрий Харун</h4>
+                <p class="text-muted">Основатель и главный специалист</p>
+                <p>11 лет опыта в ремонте электроники. Специализация: ремонт материнских плат, настройка сетевого оборудования.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="team-member">
+                <div class="team-avatar">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <h4>Владимир Харун</h4>
+                <p class="text-muted">Специалист по ремонту РЭА</p>
+                <p>15 лет опыта. Эксперт по ремонту силовой электроники, радиосвязи, бытовой техники, настройке Smart TV.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оборудование и гарантии -->
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title mb-3"><i class="fas fa-microchip me-2 text-primary"></i>Наше оборудование</h4>
+                    <ul>
+                        <li>Профессиональные паяльные станции</li>
+                        <li>Диагностические стенды для телевизоров</li>
+                        <li>BGA-станция для ремонта чипов</li>
+                        <li>Оригинальные запчасти от производителей</li>
+                        <li>Лицензионное программное обеспечение</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title mb-3"><i class="fas fa-shield-alt me-2 text-success"></i>Гарантии</h4>
+                    <ul>
+                        <li>Гарантия на работы: от 3 до 6 месяцев</li>
+                        <li>Гарантия на запчасти: от 6 до 12 месяцев</li>
+                        <li>Бесплатная диагностика при последующем ремонте</li>
+                        <li>Бесплатное гарантийное обслуживание</li>
+                        <li>Прозрачные условия гарантии</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA секция -->
+    <div class="text-center py-5">
+        <h3 class="mb-4">Готовы отремонтировать ваше устройство?</h3>
+        <p class="lead mb-4">Свяжитесь с нами прямо сейчас для бесплатной консультации</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="tel:+79157023172" class="btn btn-primary btn-lg">
+                <i class="fas fa-phone me-2"></i>Позвонить
+            </a>
+            <a href="https://t.me/kharun_dima" target="_blank" class="btn btn-success btn-lg">
+                <i class="fab fa-telegram me-2"></i>Написать в Telegram
+            </a>
+            <a href="{{ url_for('contacts') }}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-map-marker-alt me-2"></i>Все контакты
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

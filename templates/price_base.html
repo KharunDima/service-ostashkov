@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_data.title }}{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/price.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="price-container">
+    <!-- Шапка -->
+    <header class="price-header price-header-{{ page_data.color_scheme }}">
+        <i class="fas {{ page_data.icon }}"></i>
+        <h1>{{ page_data.title }}</h1>
+        <p class="lead mb-3">{{ page_data.subtitle }}</p>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> +7 (915) 702-31-72</p>
+            <p><i class="fas fa-clock"></i> Ежедневно 9:00–21:00</p>
+        </div>
+    </header>
+
+    <!-- Важная информация -->
+    {% if page_data.important_notes %}
+    <div class="important-note">
+        <h3><i class="fas fa-info-circle"></i> Важная информация</h3>
+        {% for note in page_data.important_notes %}
+        <p>• {{ note }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Сетка услуг -->
+    <div class="price-grid">
+        {% for category in page_data.categories %}
+        <div class="price-card price-card-{{ page_data.color_scheme }}">
+            <div class="card-header card-header-{{ page_data.color_scheme }}">
+                <i class="fas {{ category.icon }}"></i>
+                <h2>{{ category.title }}</h2>
+            </div>
+            <div class="service-list">
+                {% for service in category.services %}
+                <div class="service-item">
+                    <div class="service-info">
+                        <div class="service-name">{{ service.name }}</div>
+                        {% if service.guarantee %}
+                        <div class="guarantee-badge">гарантия {{ service.guarantee }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="service-price service-price-{{ page_data.color_scheme }}">
+                        {{ service.price }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Футер с дополнительной информацией -->
+    <div class="price-footer price-footer-{{ page_data.color_scheme }}">
+        {% if page_data.footer_info %}
+        <h3>Дополнительная информация</h3>
+        {% for info in page_data.footer_info %}
+        <p>• {{ info }}</p>
+        {% endfor %}
+        {% endif %}
+
+        <!-- Кнопка для записи -->
+        <a href="https://t.me/kharun_dima" target="_blank" class="cta-button cta-button-{{ page_data.color_scheme }}">
+            <i class="fas fa-calendar-check"></i> Заказать консультацию в Telegram
+        </a>
+
+        <!-- Дисклеймеры -->
+        {% if page_data.disclaimers %}
+        <div class="disclaimer mt-4">
+            {% for disclaimer in page_data.disclaimers %}
+            <p><i class="fas fa-exclamation-circle"></i> {{ disclaimer }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

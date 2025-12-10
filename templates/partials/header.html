@@ -41,13 +41,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'contacts' %}active{% endif %}"
-                           href="#">
+                           href="{{ url_for('contacts') }}">
                             <i class="fas fa-phone me-1"></i>Контакты
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}"
-                           href="#">
+                           href="{{ url_for('about') }}">
                             <i class="fas fa-info-circle me-1"></i>О нас
                         </a>
                     </li>
@@ -74,7 +74,7 @@
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Написать в WhatsApp">
                             <i class="fab fa-whatsapp fa-lg" style="color: #25d366;"></i>
                         </a>
-                        <a href="https://t.me" target="_blank" class="text-decoration-none social-icon"
+                        <a href="https://t.me/kharun_dima" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Написать в Telegram">
                             <i class="fab fa-telegram fa-lg" style="color: #0088cc;"></i>
                         </a>
@@ -106,36 +106,11 @@
                     </div>
 
                     <!-- Кнопка "Записаться" -->
-                    <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#callbackModal">
+                    <a href="https://t.me/kharun_dima" target="_blank" class="btn btn-outline-light">
                         <i class="fas fa-calendar-check me-1"></i>Записаться
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 </header>
-
-<!-- Модальное окно: Запись на ремонт -->
-<div class="modal fade" id="callbackModal" tabindex="-1" aria-labelledby="callbackModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="callbackModalLabel">Запись на ремонт</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="callbackName" class="form-label">Ваше имя</label>
-                        <input type="text" class="form-control" id="callbackName" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="callbackPhone" class="form-label">Телефон</label>
-                        <input type="tel" class="form-control" id="callbackPhone" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Заказать звонок</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
