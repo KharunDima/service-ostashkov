@@ -1,11 +1,22 @@
 import json
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
 
 # Загружаем данные из JSON
-with open('data/services.json', 'r', encoding='utf-8') as f:
-    services_data = json.load(f)
+SERVICES_FILE = 'data/services.json'
+
+if not os.path.exists(SERVICES_FILE):
+    raise FileNotFoundError(f"Файл {SERVICES_FILE} не найден. Убедитесь, что файл существует перед запуском.")
+
+try:
+    with open(SERVICES_FILE, 'r', encoding='utf-8') as f:
+        services_data = json.load(f)
+except json.JSONDecodeError as e:
+    raise ValueError(f"Ошибка парсинга JSON в файле {SERVICES_FILE}: {e}")
+except Exception as e:
+    raise Exception(f"Неизвестная ошибка при загрузке данных: {e}")
 
 # === Данные: Логотипы брендов ===
 logos_data = [
@@ -69,5 +80,7 @@ def internal_server_error(e):
 
 # === Запуск приложения ===
 if __name__ == '__main__':
-    # Запуск сервера: debug=True, порт 5001
-    app.run(debug=True, port=5001)
+    # Перед деплоем отключите debug=True
+    debug_mode = False  # Установите в True только для локальной разработки
+    port = int(os.environ.get('PORT', 5001))  # Используйте переменную окружения PORT
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
