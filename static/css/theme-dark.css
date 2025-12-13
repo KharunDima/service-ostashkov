@@ -41,19 +41,36 @@
     background-color: var(--light-bg);
 }
 
-/* ========== ТЕМНЫЕ СТИЛИ ДЛЯ ИНТЕРНЕТ-УСЛУГ ========== */
-[data-bs-theme="dark"] .price-header {
+/* ========== ТЕМНЫЕ СТИЛИ ДЛЯ ПРАЙС-ЛИСТОВ ========== */
+[data-bs-theme="dark"] .price-header-blue {
+    background: linear-gradient(135deg, #0d47a1, #002171) !important;
+}
+
+[data-bs-theme="dark"] .price-header-green {
+    background: linear-gradient(135deg, #2E7D32, #1B5E20) !important;
+}
+
+[data-bs-theme="dark"] .price-header-purple {
     background: linear-gradient(135deg, #6a11cb, #2575fc) !important;
 }
 
 [data-bs-theme="dark"] .price-card {
     background-color: var(--card-bg) !important;
-    border-top-color: #9c27b0 !important;
     border-color: var(--border-color) !important;
     box-shadow: 0 4px 15px var(--shadow-color) !important;
 }
 
-[data-bs-theme="dark"] .card-header i {
+[data-bs-theme="dark"] .card-header-blue i {
+    background: rgba(33, 150, 243, 0.2) !important;
+    color: #64b5f6 !important;
+}
+
+[data-bs-theme="dark"] .card-header-green i {
+    background: rgba(76, 175, 80, 0.2) !important;
+    color: #81c784 !important;
+}
+
+[data-bs-theme="dark"] .card-header-purple i {
     background: rgba(156, 39, 176, 0.2) !important;
     color: #ba68c8 !important;
 }
@@ -71,8 +88,8 @@
 }
 
 [data-bs-theme="dark"] .guarantee-badge {
-    background: rgba(156, 39, 176, 0.3) !important;
-    color: #e1bee7 !important;
+    background: rgba(129, 199, 132, 0.2) !important;
+    color: #a5d6a7 !important;
 }
 
 [data-bs-theme="dark"] .important-note {
@@ -89,33 +106,16 @@
     color: var(--text-color) !important;
 }
 
-[data-bs-theme="dark"] .price-footer h3 {
-    color: #ba68c8 !important;
+[data-bs-theme="dark"] .price-footer-blue h3 {
+    color: #64b5f6 !important;
 }
 
-/* ========== ТЕМНЫЕ СТИЛИ ДЛЯ ПРАЙС-ЛИСТОВ ========== */
-[data-bs-theme="dark"] .price-header-tv {
-    background: linear-gradient(135deg, #2E7D32, #1B5E20) !important;
-}
-
-[data-bs-theme="dark"] .price-card,
-[data-bs-theme="dark"] .price-card-tv {
-    background-color: var(--card-bg) !important;
-    border-color: var(--border-color) !important;
-}
-
-[data-bs-theme="dark"] .card-header-tv i {
-    background: rgba(76, 175, 80, 0.2) !important;
+[data-bs-theme="dark"] .price-footer-green h3 {
     color: #81c784 !important;
 }
 
-[data-bs-theme="dark"] .service-price,
-[data-bs-theme="dark"] .service-price-tv,
-[data-bs-theme="dark"] .price-range,
-[data-bs-theme="dark"] .price-range-tv,
-[data-bs-theme="dark"] .free-price,
-[data-bs-theme="dark"] .free-price-tv {
-    color: inherit !important;
+[data-bs-theme="dark"] .price-footer-purple h3 {
+    color: #ba68c8 !important;
 }
 
 /* ========== ТЕМНЫЕ СТИЛИ ДЛЯ МОДАЛЬНЫХ ОКОН ========== */
@@ -199,58 +199,120 @@
     color: white !important;
 }
 
-/* ========== СТИЛИ СОЦСЕТЕЙ В ШАПКЕ ========== */
+/* ========== СТИЛИ СОЦСЕТЕЙ - БЕЗ КВАДРАТНОГО КОНТУРА ========== */
 .social-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 36px;
     height: 36px;
-    border-radius: 8px;
     transition: all 0.3s ease;
     opacity: 0.9;
+    background: transparent !important;
+    border: none !important;
 }
 
 .social-icon:hover {
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.1);
 }
 
+/* Светлая тема - иконки цветные */
 [data-bs-theme="light"] .social-icon {
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    color: #495057;
+    background: transparent !important;
+    border: none !important;
+    color: inherit;
 }
 
 [data-bs-theme="light"] .social-icon:hover {
-    background-color: #e9ecef;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
+/* Темная тема - иконки светлее */
 [data-bs-theme="dark"] .social-icon {
-    background-color: #2d3748;
-    border: 1px solid #4a5568;
+    background: transparent !important;
+    border: none !important;
     color: #cbd5e0;
 }
 
 [data-bs-theme="dark"] .social-icon:hover {
-    background-color: #4a5568;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
+/* Цвета иконок в светлой теме */
 [data-bs-theme="light"] .fa-github {
     color: #333;
 }
 
+[data-bs-theme="light"] .fa-youtube {
+    color: #ff0000;
+}
+
+[data-bs-theme="light"] .fa-whatsapp {
+    color: #25d366;
+}
+
+[data-bs-theme="light"] .fa-telegram {
+    color: #0088cc;
+}
+
+/* Цвета иконок в темной теме */
 [data-bs-theme="dark"] .fa-github {
     color: #f0f6fc;
+}
+
+[data-bs-theme="dark"] .fa-youtube {
+    color: #ff6b6b;
+}
+
+[data-bs-theme="dark"] .fa-whatsapp {
+    color: #4cd964;
+}
+
+[data-bs-theme="dark"] .fa-telegram {
+    color: #5d9cec;
+}
+
+/* Эффекты при наведении */
+.social-icon .fa-github:hover {
+    color: #6e5494 !important;
+}
+
+.social-icon .fa-youtube:hover {
+    color: #ff3333 !important;
+}
+
+.social-icon .fa-whatsapp:hover {
+    color: #00ff6a !important;
+}
+
+.social-icon .fa-telegram:hover {
+    color: #33aaff !important;
+}
+
+[data-bs-theme="dark"] .social-icon .fa-github:hover {
+    color: #8b65d6 !important;
+}
+
+[data-bs-theme="dark"] .social-icon .fa-youtube:hover {
+    color: #ff6b6b !important;
+}
+
+[data-bs-theme="dark"] .social-icon .fa-whatsapp:hover {
+    color: #4cd964 !important;
+}
+
+[data-bs-theme="dark"] .social-icon .fa-telegram:hover {
+    color: #5d9cec !important;
 }
 
 @media (max-width: 768px) {
     .social-icon {
         width: 32px;
         height: 32px;
-        font-size: 0.9rem !important;
+        font-size: 1.1rem !important;
     }
 
     .d-flex.gap-2.me-2 {
@@ -265,20 +327,4 @@
 
 [data-bs-theme="dark"] .tooltip {
     --bs-tooltip-bg: #4a5568;
-}
-
-.social-icon .fa-github:hover {
-    transform: scale(1.1);
-}
-
-.social-icon .fa-youtube:hover {
-    color: #ff3333 !important;
-}
-
-.social-icon .fa-whatsapp:hover {
-    color: #00ff6a !important;
-}
-
-.social-icon .fa-telegram:hover {
-    color: #33aaff !important;
 }

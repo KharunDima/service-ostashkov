@@ -54,48 +54,141 @@
     color: #1a73e8;
 }
 
+/* ========== ОБНОВЛЕННЫЕ СТИЛИ СОЦСЕТЕЙ ========== */
 .social-links {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     justify-content: center;
     margin-top: 2rem;
 }
 
+/* Используем inline-block вместо inline-flex */
 .social-link {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--card-bg, white);
-    color: #333;
-    font-size: 1.5rem;
+    display: inline-block;
+    text-decoration: none !important;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    opacity: 0.9;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: relative;
+    font-size: 1.8rem;
+}
+
+/* Убираем подчеркивание и outline */
+.social-link,
+.social-link:hover,
+.social-link:focus,
+.social-link:active {
+    text-decoration: none !important;
+    outline: none !important;
+    border: none !important;
 }
 
 .social-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 1;
+    transform: translateY(-3px) scale(1.1);
 }
 
-.social-link.whatsapp:hover {
-    background: #25D366;
-    color: white;
+/* Цвета иконок в светлой теме */
+[data-bs-theme="light"] .social-link {
+    color: inherit !important;
 }
 
-.social-link.telegram:hover {
-    background: #0088cc;
-    color: white;
+[data-bs-theme="light"] .social-link i.fa-whatsapp {
+    color: #25d366;
 }
 
-.social-link.youtube:hover {
-    background: #FF0000;
-    color: white;
+[data-bs-theme="light"] .social-link i.fa-telegram {
+    color: #0088cc;
 }
 
-.social-link.github:hover {
-    background: #333;
-    color: white;
+[data-bs-theme="light"] .social-link i.fa-youtube {
+    color: #ff0000;
+}
+
+[data-bs-theme="light"] .social-link i.fa-github {
+    color: #333;
+}
+
+/* Цвета иконок в темной теме */
+[data-bs-theme="dark"] .social-link {
+    color: #cbd5e0 !important;
+}
+
+[data-bs-theme="dark"] .social-link i.fa-whatsapp {
+    color: #4cd964;
+}
+
+[data-bs-theme="dark"] .social-link i.fa-telegram {
+    color: #5d9cec;
+}
+
+[data-bs-theme="dark"] .social-link i.fa-youtube {
+    color: #ff6b6b;
+}
+
+[data-bs-theme="dark"] .social-link i.fa-github {
+    color: #f0f6fc;
+}
+
+/* Эффекты при наведении - светлая тема */
+[data-bs-theme="light"] .social-link:hover i.fa-whatsapp {
+    color: #00ff6a !important;
+}
+
+[data-bs-theme="light"] .social-link:hover i.fa-telegram {
+    color: #33aaff !important;
+}
+
+[data-bs-theme="light"] .social-link:hover i.fa-youtube {
+    color: #ff3333 !important;
+}
+
+[data-bs-theme="light"] .social-link:hover i.fa-github {
+    color: #6e5494 !important;
+}
+
+/* Эффекты при наведении - темная тема */
+[data-bs-theme="dark"] .social-link:hover i.fa-whatsapp {
+    color: #4cd964 !important;
+}
+
+[data-bs-theme="dark"] .social-link:hover i.fa-telegram {
+    color: #5d9cec !important;
+}
+
+[data-bs-theme="dark"] .social-link:hover i.fa-youtube {
+    color: #ff6b6b !important;
+}
+
+[data-bs-theme="dark"] .social-link:hover i.fa-github {
+    color: #8b65d6 !important;
+}
+
+/* Tooltip */
+.tooltip {
+    --bs-tooltip-bg: #333;
+    --bs-tooltip-color: white;
+}
+
+[data-bs-theme="dark"] .tooltip {
+    --bs-tooltip-bg: #4a5568;
+}
+
+@media (max-width: 768px) {
+    .social-link {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.5rem !important;
+    }
+
+    .social-links {
+        gap: 1.5rem;
+    }
 }
