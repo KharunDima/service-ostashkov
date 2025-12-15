@@ -4,6 +4,53 @@
     padding: 2rem;
 }
 
+/* ========== ЗАГОЛОВОК КОНТАКТОВ (как на странице "О нас") ========== */
+.contacts-hero {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    color: white;
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.contacts-hero:: {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+    background-size: cover;
+}
+
+[data-bs-theme="dark"] .contacts-hero {
+    background: linear-gradient(135deg, #0d47a1, #002171);
+}
+
+/* ========== УБИРАЕМ СТИЛИ ДЛЯ .position-relative ========== */
+.position-relative {
+    /* Убираем стили которые мы добавляли раньше */
+    background: none;
+    color: inherit;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 0;
+    position: static;
+    overflow: visible;
+}
+
+.position-relative::before {
+    content: none;
+}
+
+[data-bs-theme="dark"] .position-relative {
+    background: none;
+}
+
 .contact-card {
     background: var(--card-bg, white);
     border-radius: 15px;

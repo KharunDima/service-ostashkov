@@ -14,7 +14,7 @@
     overflow: hidden;
 }
 
-.about-hero::before {
+.about-hero:: {
     content: '';
     position: absolute;
     top: 0;
