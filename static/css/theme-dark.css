@@ -328,3 +328,43 @@
 [data-bs-theme="dark"] .tooltip {
     --bs-tooltip-bg: #4a5568;
 }
+
+/* ========== ИСПРАВЛЕНИЕ ЦВЕТОВ ИКОНОК ДЛЯ ПРАЙСОВ ========== */
+
+/* Базовые цвета для всех тем */
+.text-purple {
+    color: #9c27b0 !important;
+}
+
+.fa-wifi.text-purple {
+    color: #9c27b0 !important;
+}
+
+.card-header-purple i.fa-wifi {
+    color: #9c27b0 !important;
+}
+
+/* Активные состояния */
+.nav-link.active .fa-wifi.text-purple,
+.dropdown-item.active .fa-wifi.text-purple {
+    color: #9c27b0 !important;
+}
+
+/* ========== ДЛЯ ТЕМНОЙ ТЕМЫ ========== */
+[data-bs-theme="dark"] .text-purple {
+    color: #ba68c8 !important;
+}
+
+[data-bs-theme="dark"] .fa-wifi.text-purple {
+    color: #ba68c8 !important;
+}
+
+[data-bs-theme="dark"] .card-header-purple i {
+    color: #ba68c8 !important;
+}
+
+[data-bs-theme="dark"] .nav-link.active .fa-wifi.text-purple,
+[data-bs-theme="dark"] .dropdown-item.active .fa-wifi.text-purple,
+[data-bs-theme="dark"] .dropdown-item:active .fa-wifi.text-purple {
+    color: #ba68c8 !important;
+}

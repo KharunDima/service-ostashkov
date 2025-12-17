@@ -1,0 +1,16 @@
+[
+  {"name": "Acer", "image": "/static/images/marks/acer.jpg"},
+  {"name": "Apple", "image": "/static/images/marks/apple.jpg"},
+  {"name": "Asus", "image": "/static/images/marks/asus.jpg"},
+  {"name": "Dell", "image": "/static/images/marks/dell.jpg"},
+  {"name": "eMachines", "image": "/static/images/marks/em.jpg"},
+  {"name": "Fujitsu", "image": "/static/images/marks/fujitsu.jpg"},
+  {"name": "HP", "image": "/static/images/marks/hp.jpg"},
+  {"name": "Lenovo", "image": "/static/images/marks/lenovo.jpg"},
+  {"name": "MSI", "image": "/static/images/marks/msi.jpg"},
+  {"name": "Packard Bell", "image": "/static/images/marks/pb.jpg"},
+  {"name": "Samsung", "image": "/static/images/marks/samsung.jpg"},
+  {"name": "Sony", "image": "/static/images/marks/sony.jpg"},
+  {"name": "Toshiba", "image": "/static/images/marks/toshiba.jpg"},
+  {"name": "LG", "image": "/static/images/marks/lg.jpg"}
+]

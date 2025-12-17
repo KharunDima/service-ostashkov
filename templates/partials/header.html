@@ -21,24 +21,42 @@
                             <i class="fas fa-home me-1"></i>Главная
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'internet_services' %}active{% endif %}"
-                           href="{{ url_for('internet_services') }}">
-                            <i class="fas fa-wifi me-1"></i>Интернет услуги
+
+                    <!-- Прайсы - выпадающее меню -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if request.endpoint in ['price_laptops', 'price_tv', 'internet_services', 'price_pdf'] %}active{% endif %}"
+                           href="#" id="priceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-tags me-1"></i>Прайсы
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+                            <li>
+                                <a class="dropdown-item {% if request.endpoint == 'price_pdf' %}active{% endif %}"
+                                   href="{{ url_for('price_pdf') }}">
+                                    <i class="fas fa-file-pdf me-2 text-danger"></i>Полный прайс (PDF)
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item {% if request.endpoint == 'price_laptops' %}active{% endif %}"
+                                   href="{{ url_for('price_laptops') }}">
+                                    <i class="fas fa-laptop-medical me-2 text-primary"></i>Ноутбуки и ПК
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {% if request.endpoint == 'price_tv' %}active{% endif %}"
+                                   href="{{ url_for('price_tv') }}">
+                                    <i class="fas fa-tv me-2 text-success"></i>Телевизоры
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {% if request.endpoint == 'internet_services' %}active{% endif %}"
+                                   href="{{ url_for('internet_services') }}">
+                                    <i class="fas fa-wifi me-2 text-purple"></i>Интернет-услуги
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'price_laptops' %}active{% endif %}"
-                           href="{{ url_for('price_laptops') }}">
-                            <i class="fas fa-laptop-medical me-1"></i>Ноутбуки
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'price_tv' %}active{% endif %}"
-                           href="{{ url_for('price_tv') }}">
-                            <i class="fas fa-tv me-1"></i>Телевизоры
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'contacts' %}active{% endif %}"
                            href="{{ url_for('contacts') }}">
@@ -57,27 +75,38 @@
                 <div class="d-flex align-items-center gap-3">
                     <!-- Телефон (только на десктопе) -->
                     <span class="navbar-text me-2 d-none d-md-block">
-                        <i class="fas fa-phone me-1"></i>+7 (915) 702-31-72
+                        <i class="fas fa-phone me-1"></i>{{ contact_info.phone }}
                     </span>
 
                     <!-- Иконки социальных сетей - БЕЗ КВАДРАТНОГО КОНТУРА -->
                     <div class="d-flex align-items-center gap-2 me-2">
-                        <a href="https://github.com" target="_blank" class="text-decoration-none social-icon"
+                        {% if social_links.github %}
+                        <a href="{{ social_links.github }}" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Наш GitHub">
                             <i class="fab fa-github fa-lg"></i>
                         </a>
-                        <a href="https://youtube.com" target="_blank" class="text-decoration-none social-icon"
+                        {% endif %}
+
+                        {% if social_links.youtube %}
+                        <a href="{{ social_links.youtube }}" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Наш YouTube канал">
                             <i class="fab fa-youtube fa-lg"></i>
                         </a>
-                        <a href="https://wa.me/79157023172" target="_blank" class="text-decoration-none social-icon"
+                        {% endif %}
+
+                        {% if social_links.whatsapp %}
+                        <a href="{{ social_links.whatsapp }}" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Написать в WhatsApp">
                             <i class="fab fa-whatsapp fa-lg"></i>
                         </a>
-                        <a href="https://t.me/kharun_dima" target="_blank" class="text-decoration-none social-icon"
+                        {% endif %}
+
+                        {% if social_links.telegram %}
+                        <a href="{{ social_links.telegram }}" target="_blank" class="text-decoration-none social-icon"
                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Написать в Telegram">
                             <i class="fab fa-telegram fa-lg"></i>
                         </a>
+                        {% endif %}
                     </div>
 
                     <!-- Переключатель темы -->
@@ -106,7 +135,7 @@
                     </div>
 
                     <!-- Кнопка "Записаться" -->
-                    <a href="https://t.me/kharun_dima" target="_blank" class="btn btn-outline-light">
+                    <a href="{{ social_links.telegram if social_links.telegram else '#' }}" target="_blank" class="btn btn-outline-light">
                         <i class="fas fa-calendar-check me-1"></i>Записаться
                     </a>
                 </div>

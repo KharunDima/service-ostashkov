@@ -145,44 +145,54 @@
     <!-- Разделитель -->
     <hr class="featurette-divider">
 
-    <!-- Первая фичерет -->
+    <!-- Первая фичерет (Ноутбуки) -->
     <div class="row featurette align-items-center">
         <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">Ремонт ноутбуков <span class="text-body-secondary">и компьютеров</span></h2>
-            <ul class="lead">
-                <li>Замена матрицы и петель дисплея</li>
-                <li>Ремонт материнских плат</li>
-                <li>Чистка от пыли и замена термопасты</li>
-                <li>Замена клавиатуры и разъемов</li>
-                <li>Восстановление после залития</li>
-            </ul>
-            <p><a href="{{ url_for('price_laptops') }}" class="btn btn-primary btn-lg">Узнать цены</a></p>
+            <div class="featurette-content pe-md-5"> <!-- Добавляем обертку -->
+                <h2 class="featurette-heading fw-normal lh-1">Ремонт ноутбуков <span class="text-body-secondary">и компьютеров</span></h2>
+                <ul class="lead">
+                    <li>Замена матрицы и петель дисплея</li>
+                    <li>Ремонт материнских плат</li>
+                    <li>Чистка от пыли и замена термопасты</li>
+                    <li>Замена клавиатуры и разъемов</li>
+                    <li>Восстановление после залития</li>
+                </ul>
+                <p><a href="{{ url_for('price_laptops') }}" class="btn btn-primary btn-lg">Узнать цены</a></p>
+            </div>
         </div>
         <div class="col-md-5">
-            <div class="featurette-image-placeholder bg-light rounded shadow-sm p-5 text-center">
-                <i class="fas fa-laptop-code fa-7x text-primary"></i>
+            <div class="featurette-image-wrapper">
+                <img src="{{ url_for('static', filename='images/featurette/laptop.jpg') }}"
+                     alt="Ремонт ноутбуков"
+                     class="featurette-image img-fluid rounded shadow-sm">
+                <div class="featurette-overlay"></div>
             </div>
         </div>
     </div>
 
     <hr class="featurette-divider">
 
-    <!-- Вторая фичерет -->
+    <!-- Вторая фичерет (Телевизоры) -->
     <div class="row featurette align-items-center">
         <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">Ремонт телевизоров <span class="text-body-secondary">и мониторов</span></h2>
-            <ul class="lead">
-                <li>Замена подсветки и матриц</li>
-                <li>Ремонт блоков питания</li>
-                <li>Замена T-Con плат</li>
-                <li>Ремонт Smart TV и настройка</li>
-                <li>Калибровка изображения</li>
-            </ul>
-            <p><a href="{{ url_for('price_tv') }}" class="btn btn-primary btn-lg">Узнать цены</a></p>
+            <div class="featurette-content ps-md-5"> <!-- Добавляем обертку с padding -->
+                <h2 class="featurette-heading fw-normal lh-1">Ремонт телевизоров <span class="text-body-secondary">и мониторов</span></h2>
+                <ul class="lead">
+                    <li>Замена подсветки и матриц</li>
+                    <li>Ремонт блоков питания</li>
+                    <li>Замена T-Con плат</li>
+                    <li>Ремонт Smart TV и настройка</li>
+                    <li>Калибровка изображения</li>
+                </ul>
+                <p><a href="{{ url_for('price_tv') }}" class="btn btn-primary btn-lg">Узнать цены</a></p>
+            </div>
         </div>
         <div class="col-md-5 order-md-1">
-            <div class="featurette-image-placeholder bg-light rounded shadow-sm p-5 text-center">
-                <i class="fas fa-tv fa-7x text-success"></i>
+            <div class="featurette-image-wrapper">
+                <img src="{{ url_for('static', filename='images/featurette/tv.jpg') }}"
+                     alt="Ремонт телевизоров"
+                     class="featurette-image img-fluid rounded shadow-sm">
+                <div class="featurette-overlay"></div>
             </div>
         </div>
     </div>

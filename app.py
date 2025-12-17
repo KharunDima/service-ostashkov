@@ -1,61 +1,113 @@
 import json
-from flask import Flask, render_template
 import os
+from flask import Flask, render_template, send_file, abort
+
+# Импортируем конфигурацию
+from config import Config, DATA_FILES, PDF_SETTINGS, CONTACT_INFO, SOCIAL_LINKS, SITE_INFO
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-# Загружаем данные из JSON
-SERVICES_FILE = 'data/services.json'
+def load_json_data(file_path):
+    """Загружает данные из JSON файла с обработкой ошибок"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Файл {file_path} не найден.")
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Ошибка парсинга JSON в файле {file_path}: {e}")
+    except Exception as e:
+        raise Exception(f"Неизвестная ошибка при загрузке данных: {e}")
 
-if not os.path.exists(SERVICES_FILE):
-    raise FileNotFoundError(f"Файл {SERVICES_FILE} не найден. Убедитесь, что файл существует перед запуском.")
-
+# Загружаем данные при старте
 try:
-    with open(SERVICES_FILE, 'r', encoding='utf-8') as f:
-        services_data = json.load(f)
-except json.JSONDecodeError as e:
-    raise ValueError(f"Ошибка парсинга JSON в файле {SERVICES_FILE}: {e}")
+    SERVICES_DATA = load_json_data(DATA_FILES['services'])
+    LOGOS_DATA = load_json_data(DATA_FILES['logos'])
 except Exception as e:
-    raise Exception(f"Неизвестная ошибка при загрузке данных: {e}")
+    print(f"Ошибка загрузки данных: {e}")
+    SERVICES_DATA = {}
+    LOGOS_DATA = []
 
-# === Данные: Логотипы брендов ===
-logos_data = [
-    {'name': 'Acer', 'image': '/static/images/marks/acer.jpg'},
-    {'name': 'Apple', 'image': '/static/images/marks/apple.jpg'},
-    {'name': 'Asus', 'image': '/static/images/marks/asus.jpg'},
-    {'name': 'Dell', 'image': '/static/images/marks/dell.jpg'},
-    {'name': 'eMachines', 'image': '/static/images/marks/em.jpg'},
-    {'name': 'Fujitsu', 'image': '/static/images/marks/fujitsu.jpg'},
-    {'name': 'HP', 'image': '/static/images/marks/hp.jpg'},
-    {'name': 'Lenovo', 'image': '/static/images/marks/lenovo.jpg'},
-    {'name': 'MSI', 'image': '/static/images/marks/msi.jpg'},
-    {'name': 'Packard Bell', 'image': '/static/images/marks/pb.jpg'},
-    {'name': 'Samsung', 'image': '/static/images/marks/samsung.jpg'},
-    {'name': 'Sony', 'image': '/static/images/marks/sony.jpg'},
-    {'name': 'Toshiba', 'image': '/static/images/marks/toshiba.jpg'},
-    {'name': 'LG', 'image': '/static/images/marks/lg.jpg'}
-]
+# Контекстный процессор для добавления глобальных переменных в шаблоны
+@app.context_processor
+def inject_global_data():
+    """Добавляет глобальные данные во все шаблоны"""
+    return {
+        'site_info': SITE_INFO,
+        'contact_info': CONTACT_INFO,
+        'social_links': SOCIAL_LINKS,
+        'current_year': 2024
+    }
 
-# === Маршруты ===
+# === МАРШРУТЫ ===
+
 @app.route('/')
 def index():
     """Главная страница"""
-    return render_template('index.html', logos=logos_data)
+    return render_template('index.html', logos=LOGOS_DATA)
 
 @app.route('/price-laptops')
 def price_laptops():
     """Прайс-лист: ноутбуки"""
-    return render_template('price_base.html', page_data=services_data['laptops'])
+    return render_template('price_base.html', page_data=SERVICES_DATA['laptops'])
 
 @app.route('/price-tv')
 def price_tv():
     """Прайс-лист: телевизоры"""
-    return render_template('price_base.html', page_data=services_data['tv'])
+    return render_template('price_base.html', page_data=SERVICES_DATA['tv'])
 
 @app.route('/internet-services')
 def internet_services():
     """Услуги по настройке интернета и роутеров"""
-    return render_template('price_base.html', page_data=services_data['internet_services'])
+    return render_template('price_base.html', page_data=SERVICES_DATA['internet_services'])
+
+@app.route('/price-pdf')
+def price_pdf():
+    """Страница с PDF прайс-листом"""
+    pdf_path = PDF_SETTINGS['price_file']
+    pdf_size = "Не доступен"
+
+    if pdf_path.exists():
+        size_bytes = pdf_path.stat().st_size
+        # Конвертируем в читаемый формат
+        if size_bytes < 1024:
+            pdf_size = f"{size_bytes} Б"
+        elif size_bytes < 1024 * 1024:
+            pdf_size = f"{size_bytes / 1024:.1f} КБ"
+        else:
+            pdf_size = f"{size_bytes / (1024 * 1024):.1f} МБ"
+
+    return render_template('price_pdf.html', pdf_size=pdf_size)
+
+@app.route('/download-price')
+def download_price():
+    """Скачивание PDF прайс-листа"""
+    pdf_path = PDF_SETTINGS['price_file']
+
+    if not pdf_path.exists():
+        abort(404, description="Прайс-лист не найден")
+
+    return send_file(
+        pdf_path,
+        as_attachment=True,
+        download_name='price-list.pdf',
+        mimetype='application/pdf'
+    )
+
+@app.route('/view-price')
+def view_price():
+    """Просмотр PDF прайс-листа в браузере"""
+    pdf_path = PDF_SETTINGS['price_file']
+
+    if not pdf_path.exists():
+        abort(404, description="Прайс-лист не найден")
+
+    return send_file(
+        pdf_path,
+        as_attachment=False,
+        mimetype='application/pdf'
+    )
 
 @app.route('/contacts')
 def contacts():
@@ -67,7 +119,8 @@ def about():
     """Страница о нас"""
     return render_template('about.html')
 
-# === Обработчики ошибок ===
+# === ОБРАБОТЧИКИ ОШИБОК ===
+
 @app.errorhandler(404)
 def page_not_found(e):
     """Обработка ошибки 404 — страница не найдена"""
@@ -78,9 +131,17 @@ def internal_server_error(e):
     """Обработка ошибки 500 — внутренняя ошибка сервера"""
     return render_template('500.html'), 500
 
-# === Запуск приложения ===
+# === ЗАПУСК ПРИЛОЖЕНИЯ ===
+
 if __name__ == '__main__':
-    # Перед деплоем отключите debug=True
-    debug_mode = False  # Установите в True только для локальной разработки
-    port = int(os.environ.get('PORT', 5001))  # Используйте переменную окружения PORT
-    app.run(debug=debug_mode, host='0.0.0.0', port=port)
+    # Проверяем наличие PDF файла
+    if not PDF_SETTINGS['price_file'].exists():
+        print(f"ВНИМАНИЕ: PDF файл не найден: {PDF_SETTINGS['price_file']}")
+        print("Создайте папку static/pdf и поместите туда price-list.pdf")
+
+    # Настройки запуска
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    port = int(os.environ.get('PORT', 5001))
+    host = os.environ.get('HOST', '0.0.0.0')
+
+    app.run(debug=debug_mode, host=host, port=port)

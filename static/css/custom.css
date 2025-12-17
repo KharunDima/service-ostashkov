@@ -234,3 +234,70 @@ body {
 [data-bs-theme="dark"] .featurette-image-placeholder {
     background-color: #2d2d2d;
 }
+
+/* ========== СТИЛИ ДЛЯ FEATURETTE ИЗОБРАЖЕНИЙ ========== */
+
+.featurette-image-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.featurette-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.featurette-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.featurette-image-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.featurette-image-wrapper:hover .featurette-image {
+    transform: scale(1.05);
+}
+
+.featurette-image-wrapper:hover .featurette-overlay {
+    opacity: 0.2;
+}
+
+/* Стили для темной темы */
+[data-bs-theme="dark"] .featurette-image-wrapper {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-bs-theme="dark"] .featurette-image-wrapper:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+[data-bs-theme="dark"] .featurette-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .featurette-image-wrapper {
+        margin-top: 2rem;
+    }
+
+    .featurette-image-wrapper:hover {
+        transform: translateY(-3px);
+    }
+}
+
+

@@ -1,0 +1,66 @@
+/* ========== СТРАНИЦА PDF ПРАЙС-ЛИСТА ========== */
+
+.price-pdf-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.pdf-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 2px dashed #dee2e6;
+}
+
+[data-bs-theme="dark"] .pdf-header {
+    background: linear-gradient(135deg, #2d3748, #4a5568);
+    border-color: #718096;
+}
+
+.alternative-prices .card {
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.alternative-prices .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: #1a73e8;
+}
+
+[data-bs-theme="dark"] .alternative-prices .card {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+[data-bs-theme="dark"] .alternative-prices .card:hover {
+    border-color: #4299e1;
+}
+
+.text-purple {
+    color: #9c27b0 !important;
+}
+
+[data-bs-theme="dark"] .text-purple {
+    color: #ba68c8 !important;
+}
+
+.info-section {
+    border-left: 4px solid #ffb300;
+}
+
+[data-bs-theme="dark"] .info-section {
+    background: #2d3748 !important;
+    border-left-color: #ecc94b;
+}
+
+@media (max-width: 768px) {
+    .pdf-header {
+        padding: 2rem 1rem;
+    }
+
+    .price-pdf-container {
+        padding: 1rem;
+    }
+}
