@@ -6,9 +6,39 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ========== СТИЛИ ДЛЯ КАРУСЕЛИ ========== */
+/* ========== СТИЛИ ДЛЯ КАРУСЕЛИ (перенесено из carousel.css) ========== */
 
-/* Основные стили для карусели */
+/* Базовые стили карусели */
+.carousel {
+    margin-bottom: 4rem;
+}
+
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+.carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.carousel-item {
+    height: 32rem;
+    background-color: #777;
+}
+
+.carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+    object-fit: cover;
+}
+
+/* Дополнительные стили карусели */
 .carousel-item {
     position: relative;
     height: 32rem;
@@ -43,38 +73,59 @@
     align-items: center;
 }
 
-/* Сам текст */
+/* Сам текст - ЯВНО задаем белый цвет с тенью */
 .carousel-caption {
     z-index: 2;
     position: relative;
+    color: white !important;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7) !important;
 }
 
 .carousel-caption h1 {
     font-size: 3rem;
     font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
     margin-bottom: 1rem;
+    color: white !important;
 }
 
 .carousel-caption .lead {
     font-size: 1.5rem;
     font-weight: 400;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
     margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* Кнопки */
+/* Кнопки в карусели */
 .carousel-caption .btn {
     padding: 0.75rem 2rem;
     font-weight: 600;
+    background: linear-gradient(135deg, #1a73e8, #0d47a1) !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
-.featurette-image-placeholder {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.carousel-caption .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Для темной темы - делаем текст еще контрастнее */
+[data-bs-theme="dark"] .carousel-caption h1 {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9) !important;
+    color: white !important;
+}
+
+[data-bs-theme="dark"] .carousel-caption .lead {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Усиливаем оверлей для темной темы */
+[data-bs-theme="dark"] .carousel-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
 }
 
 /* Адаптивность для мобильных */
@@ -300,4 +351,130 @@ body {
     }
 }
 
+.featurette-image-placeholder {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+/* ========== УНИФИЦИРОВАННЫЕ СТИЛИ ДЛЯ КНОПОК CTA ========== */
+
+/* Базовый стиль для всех CTA кнопок */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-align: center;
+    min-width: 220px;
+}
+
+/* Эффект при наведении */
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Псевдоэлемент для анимации */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+    z-index: -1;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+/* Цветовые схемы */
+.cta-button-blue {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+}
+
+.cta-button-green {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.cta-button-purple {
+    background: linear-gradient(135deg, #9c27b0, #673ab7);
+}
+
+.cta-button-primary {
+    background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+}
+
+/* Стили для иконок в кнопках */
+.cta-button i {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover i {
+    transform: scale(1.1);
+}
+
+/* Специфичные стили для иконки Telegram */
+.cta-button .fa-telegram {
+    color: white !important;
+}
+
+/* Стили для темной темы */
+[data-bs-theme="dark"] .cta-button-blue {
+    background: linear-gradient(135deg, #0d47a1, #002171);
+}
+
+[data-bs-theme="dark"] .cta-button-green {
+    background: linear-gradient(135deg, #2E7D32, #1B5E20);
+}
+
+[data-bs-theme="dark"] .cta-button-purple {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+[data-bs-theme="dark"] .cta-button-primary {
+    background: linear-gradient(135deg, #0b5ed7, #0a58ca);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        min-width: 200px;
+    }
+
+    .cta-button i {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        min-width: 180px;
+        gap: 8px;
+    }
+}

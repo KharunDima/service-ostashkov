@@ -125,67 +125,14 @@
     background: linear-gradient(135deg, #0d47a1, #002171);
 }
 
-/* ========== СТИЛИ ДЛЯ КНОПКИ TELEGRAM НА СТРАНИЦЕ "О НАС" ========== */
-
-/* Кнопка CTA (используем те же стили, что и в price.css) */
-.cta-button {
-    display: inline-block;
-    color: white;
-    padding: 14px 35px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.cta-button-blue {
-    background: linear-gradient(135deg, #1a73e8, #0d47a1);
-}
-
-.cta-button-green {
-    background: linear-gradient(135deg, #4CAF50, #2E7D32);
-}
-
-.cta-button-purple {
-    background: linear-gradient(135deg, #9c27b0, #673ab7);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
-    color: white;
-}
-
-/* Специфичные стили для иконки в кнопке Telegram */
-.cta-button .fa-telegram {
-    color: white !important;
-    font-size: 1.3rem;
-}
-
-/* Стили для темной темы */
-[data-bs-theme="dark"] .cta-button-blue {
-    background: linear-gradient(135deg, #0d47a1, #002171) !important;
-}
-
-[data-bs-theme="dark"] .cta-button-green {
-    background: linear-gradient(135deg, #2E7D32, #1B5E20) !important;
-}
-
-[data-bs-theme="dark"] .cta-button-purple {
-    background: linear-gradient(135deg, #6a11cb, #2575fc) !important;
-}
-
 @media (max-width: 768px) {
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 1rem;
+    .team-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 2rem;
     }
 
-    .cta-button .fa-telegram {
-        font-size: 1.1rem;
+    .stat-number {
+        font-size: 2rem;
     }
 }

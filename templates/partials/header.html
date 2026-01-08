@@ -71,14 +71,14 @@
                     </li>
                 </ul>
 
-                <!-- Правая часть: телефон, соцсети, тема, кнопка -->
+                <!-- Правая часть: телефон, соцсети, тема -->
                 <div class="d-flex align-items-center gap-3">
                     <!-- Телефон (только на десктопе) -->
                     <span class="navbar-text me-2 d-none d-md-block">
                         <i class="fas fa-phone me-1"></i>{{ contact_info.phone }}
                     </span>
 
-                    <!-- Иконки социальных сетей - БЕЗ КВАДРАТНОГО КОНТУРА -->
+                    <!-- Иконки социальных сетей -->
                     <div class="d-flex align-items-center gap-2 me-2">
                         {% if social_links.github %}
                         <a href="{{ social_links.github }}" target="_blank" class="text-decoration-none social-icon"
@@ -133,11 +133,6 @@
                             </li>
                         </ul>
                     </div>
-
-                    <!-- Кнопка "Записаться" -->
-                    <a href="{{ social_links.telegram if social_links.telegram else '#' }}" target="_blank" class="btn btn-outline-light">
-                        <i class="fas fa-calendar-check me-1"></i>Записаться
-                    </a>
                 </div>
             </div>
         </div>
